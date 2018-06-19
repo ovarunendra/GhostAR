@@ -1,15 +1,31 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { connect } from 'react-redux';
 
 import Button from '../components/Button';
+import InstructionsOverlay from '../components/InstructionsOverlay';
 
 import * as fonts from '../fonts';
 import { buttons, mixins, colors, variables } from '../styles';
 
+import { instructionsOverlay } from '../actions/environment';
+
 // create a component
 class LandingPage extends Component {
+
+    handlePlay = () => {
+        console.log('handlePlay: ' + this.props.firstPlay)
+        if(this.props.firstPlay) {
+            this.props.instructionsOverlay(true);
+        } else {
+            Actions.ArGameDisplay();
+        }
+    }
+
     render() {
+        console.log(this.props)
+        const { showInstructionsOverlay } = this.props;
         return (
             <View style={styles.root}>
                 <View style={styles.overlay}>
@@ -28,9 +44,11 @@ class LandingPage extends Component {
                     </Button>
                     <Text
                         style={styles.howToPlay}
+                        onPress={this.props.instructionsOverlay.bind(this, true)}
                     >
                         How to Play
                     </Text>
+                    { showInstructionsOverlay && <InstructionsOverlay /> }
                 </View>
             </View>
         );
@@ -76,5 +94,19 @@ const styles = StyleSheet.create({
     }
 });
 
-//make this component available to the app
-export default LandingPage;
+function mapStateToProps({ environment }) {
+    return {
+        ...environment
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        instructionsOverlay: (show) => dispatch(instructionsOverlay(show))
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LandingPage);
