@@ -1,12 +1,4 @@
 import React from 'react';
-import {
-  Platform,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
 import { Router, Stack, Scene } from 'react-native-router-flux';
 import LandingPage from './scenes/LandingPage';
 import CameraScene from './scenes/CameraScene';
