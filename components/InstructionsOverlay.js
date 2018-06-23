@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import * as Animatable from 'react-native-animatable';
 
-// import FireLaserButton from './FireLaserButton';
+import FireLaserButton from './FireLaserButton';
 
 import { mixins, colors, variables } from '../styles';
 import * as fonts from '../fonts';
@@ -107,7 +107,7 @@ class InstructionsOverlay extends Component {
                                 <Image style={styles.image} source={require('../assets/images/howtoplay.jpg')} />
                                 <Text style={styles.text}>Tap to shoot, hold down for rapid fire</Text>
 
-                                {/* <FireLaserButton style={styles.button}/> */}
+                                <FireLaserButton style={styles.button}/>
 
                                 <Text style={styles.alertText}>Turn up your volume!</Text>
 
