@@ -1,5 +1,10 @@
-import * as types from '../constants/actionTypes';
-import { variables } from '../styles';
+import {
+    ADD_AR_OBJECT,
+    AR_EXPLODE,
+    CLEAR_AR_OBJECTS,
+    REMOVE_AR_OBJECT,
+    UPDATE_GYRO_DATA
+} from '../constants/actionTypes';
 import {
     MOVE_FACTOR_X,
     MOVE_FACTOR_Y
@@ -17,7 +22,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch(action.type) {
-        case types.ADD_AR_OBJECT:
+        case ADD_AR_OBJECT:
             return {
                 ...state,
                 arObjects: [
@@ -25,12 +30,12 @@ export default function reducer(state = initialState, action) {
                     action.arObject
                 ]
             }
-        case types.AR_EXPLODE:
+        case AR_EXPLODE:
             return {
                 ...state,
                 arExplode: action.arExplode
             }
-        case types.CLEAR_AR_OBJECTS:
+        case CLEAR_AR_OBJECTS:
             return {
                 arExplode: false,
                 arObjects: [],
@@ -39,19 +44,7 @@ export default function reducer(state = initialState, action) {
                 xOffset: 0,
                 yOffset: 0
             }
-        case types.REMOVE_AR_OBJECT:
-            // console.log('REMOVE_AR_OBJECT')
-
-            // console.log('arObjects: ')
-            // console.log(state.arObjects)
-
-            // console.log('arObjectIndex: ' + action.arObjectIndex)
-            // console.log('sliced: ')
-            // console.log([
-            //         ...state.arObjects.slice(0, action.arObjectIndex),
-            //         ...state.arObjects.slice(action.arObjectIndex + 1)
-            //     ])
-
+        case REMOVE_AR_OBJECT:
             return {
                 ...state,
                 arObjects: [
@@ -59,7 +52,7 @@ export default function reducer(state = initialState, action) {
                     ...state.arObjects.slice(action.arObjectIndex + 1)
                 ]
             }
-        case types.UPDATE_GYRO_DATA:
+        case UPDATE_GYRO_DATA:
             return {
                 ...state,
                 gyroX: action.rotationRate.x,

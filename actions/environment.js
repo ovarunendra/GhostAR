@@ -1,18 +1,22 @@
-import * as types from '../constants/actionTypes';
+import {
+    CHANGE_IS_ANIMATING,
+    INSTRUCTIONS_OVERLAY,
+    PLAY_FIRST_TIME
+} from '../constants/actionTypes';
 import { AsyncStorage } from 'react-native';
 
-async function checkFirstTimePlayed(dispatch){
-    try{
+export const checkFirstTimePlayed = () => async (dispatch) => {
+    try {
         var firstPlay = await AsyncStorage.getItem('FIRST_TIME_PLAYED');
-        if(firstPlay != null) {
+        if (firstPlay != null) {
             dispatch(playFirstTime());
         }
-    }catch(err){
+    } catch(err){
         console.log(err)
     }
 }
 
-async function storeFirstTimePlayed() {
+export const storeFirstTimePlayed = () => async () => {
     try {
         await AsyncStorage.setItem('FIRST_TIME_PLAYED' , 'true');
     } catch(err){
@@ -20,34 +24,34 @@ async function storeFirstTimePlayed() {
     }
 }
 
-export function changeIsAnimating(isAnimating) {
+export const changeIsAnimating = (isAnimating) => {
     return dispatch => {
         dispatch({
-            type: types.CHANGE_IS_ANIMATING,
+            type: CHANGE_IS_ANIMATING,
             isAnimating
         });
     }
 }
 
-export function instructionsOverlay(show) {
+export const instructionsOverlay = (show) => {
     return dispatch => {
         dispatch({
-            type: types.INSTRUCTIONS_OVERLAY,
+            type: INSTRUCTIONS_OVERLAY,
             show
         });
     }
 }
 
-export function playFirstTime() {
+export const playFirstTime = () => {
     storeFirstTimePlayed();
     return dispatch => {
         dispatch({
-            type: types.PLAY_FIRST_TIME
+            type: PLAY_FIRST_TIME
         });
     }
 }
 
-export function checkFirstPlay() {
+export const checkFirstPlay = () => {
     return dispatch => {
         checkFirstTimePlayed(dispatch);
     }

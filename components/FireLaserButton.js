@@ -13,8 +13,7 @@ import Button from './Button';
 
 import { buttons, mixins, colors, variables } from '../styles';
 
-import { explodeArObject, removeArObject } from '../actions/augmented';
-import { changeIsAnimating } from '../actions/environment';
+import * as actions from '../actions';
 
 import { playSound, playRandomHitSound, stopSound } from '../scripts/sounds';
 
@@ -62,6 +61,7 @@ class FireLaserButton extends Component {
                     playRandomHitSound();
                     this.props.removeArObject(index);
                     this.props.explodeArObject(true);
+                    this.props.addHitScore();
                     timer.clearTimeout(this, 'explode')
                     timer.setTimeout(this, 'explode', () => {
                         this.props.explodeArObject(false);
@@ -153,15 +153,7 @@ function mapStateToProps({ augmented, environment }) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        changeIsAnimating: (isAnimating) => dispatch(changeIsAnimating(isAnimating)),
-        explodeArObject: (arObjIndex) => dispatch(explodeArObject(arObjIndex)),
-        removeArObject: (arObjIndex) => dispatch(removeArObject(arObjIndex))
-    };
-}
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    actions
 )(FireLaserButton);

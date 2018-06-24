@@ -1,34 +1,39 @@
-import * as types from '../constants/actionTypes';
+import {
+    ADD_SCORE,
+    GAME_OVER,
+    RESET_GAME,
+    SUBTRACT_TIME 
+} from '../constants/actionTypes';
 
-export function addElectoralVote() {
+export const addHitScore = () => {
     return dispatch => {
         dispatch({
-            type: types.ADD_VOTE
+            type: ADD_SCORE
         });
-    }
+    } 
 }
 
-export function gameOver(didWin) {
+export const gameOver = (didWin) => {
     return dispatch => {
         dispatch({
-            type: types.GAME_OVER,
+            type: GAME_OVER,
             didWin
         });
     }
 }
 
-export function resetGame() {
+export const resetGame = () => {
     return dispatch => {
         dispatch({
-            type: types.RESET_GAME
+            type: RESET_GAME
         });
     }
 }
 
-export function subtractDayToElection() {
+export const subtractTimeToComplete = () => {
     return dispatch => {
         dispatch({
-            type: types.SUBTRACT_DAY
+            type: SUBTRACT_TIME
         });
     }
 }

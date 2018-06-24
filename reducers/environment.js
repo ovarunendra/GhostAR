@@ -1,4 +1,8 @@
-import * as types from '../constants/actionTypes';
+import {
+    CHANGE_IS_ANIMATING,
+    INSTRUCTIONS_OVERLAY,
+    PLAY_FIRST_TIME
+} from '../constants/actionTypes';
 
 const initialState = {
     isAnimating: false,
@@ -8,17 +12,17 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch(action.type) {
-        case types.CHANGE_IS_ANIMATING:
+        case CHANGE_IS_ANIMATING:
             return {
                 ...state,
                 isAnimating: action.isAnimating
             }
-        case types.INSTRUCTIONS_OVERLAY:
+        case INSTRUCTIONS_OVERLAY:
             return {
                 ...state,
                 showInstructionsOverlay: action.show
             }
-        case types.PLAY_FIRST_TIME:
+        case PLAY_FIRST_TIME:
             return {
                 ...state,
                 firstPlay: false

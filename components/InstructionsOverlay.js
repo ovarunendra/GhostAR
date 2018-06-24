@@ -81,7 +81,7 @@ class InstructionsOverlay extends Component {
             changeIsAnimating(false);
             instructionsOverlay(false);
             playFirstTime();
-            Actions.ArGameDisplay();
+            Actions.ARGameDisplay();
         })
     }
     render() {

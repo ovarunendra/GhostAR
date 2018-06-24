@@ -1,36 +1,37 @@
-import * as types from '../constants/actionTypes';
+import { ADD_AR_OBJECT, CLEAR_AR_OBJECTS, AR_EXPLODE, UPDATE_GYRO_DATA, REMOVE_AR_OBJECT } 
+    from '../constants/actionTypes';
 import {
     GYRO_MOVE_THRESHOLD_X,
     GYRO_MOVE_THRESHOLD_Y
 } from '../constants';
 
-export function addArObject(arObject) {
+export const addArObject = (arObject) =>{
     return dispatch => {
         dispatch({
-            type: types.ADD_AR_OBJECT,
+            type: ADD_AR_OBJECT,
             arObject
         });
     }
 }
 
-export function clearArObjects() {
+export const clearArObjects = () => {
     return dispatch => {
         dispatch({
-            type: types.CLEAR_AR_OBJECTS
+            type: CLEAR_AR_OBJECTS
         });
     }
 }
 
-export function explodeArObject(arExplode) {
+export const explodeArObject = (arExplode) => {
     return dispatch => {
         dispatch({
-            type: types.AR_EXPLODE,
+            type: AR_EXPLODE,
             arExplode
         });
     }
 }
 
-export function updateGyroData(gyroData) {
+export const updateGyroData = (gyroData) => {
     let moveX = 0;
     let moveY = 0;
     if(gyroData.rotationRate.x > GYRO_MOVE_THRESHOLD_Y || gyroData.rotationRate.x < GYRO_MOVE_THRESHOLD_Y * -1) {
@@ -41,7 +42,7 @@ export function updateGyroData(gyroData) {
     }
     return dispatch => {
         dispatch({
-            type: types.UPDATE_GYRO_DATA,
+            type: UPDATE_GYRO_DATA,
             rotationRate: gyroData.rotationRate,
             moveX,
             moveY
@@ -51,10 +52,10 @@ export function updateGyroData(gyroData) {
 
 
 
-export function removeArObject(arObjectIndex) {
+export const removeArObject = (arObjectIndex) => {
     return dispatch => {
         dispatch({
-            type: types.REMOVE_AR_OBJECT,
+            type: REMOVE_AR_OBJECT,
             arObjectIndex
         });
     }

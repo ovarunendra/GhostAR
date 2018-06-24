@@ -1,7 +1,7 @@
-//import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import Button from '../components/Button';
 import InstructionsOverlay from '../components/InstructionsOverlay';
@@ -11,20 +11,17 @@ import { buttons, mixins, colors, variables } from '../styles';
 
 import { instructionsOverlay } from '../actions/environment';
 
-// create a component
 class LandingPage extends Component {
 
     handlePlay = () => {
-        console.log('handlePlay: ' + this.props.firstPlay)
         if(this.props.firstPlay) {
             this.props.instructionsOverlay(true);
         } else {
-            Actions.ArGameDisplay();
+            Actions.ARGameDisplay();
         }
     }
 
     render() {
-        console.log(this.props)
         const { showInstructionsOverlay } = this.props;
         return (
             <View style={styles.root}>
@@ -55,7 +52,6 @@ class LandingPage extends Component {
     }
 }
 
-// define your styles
 const styles = StyleSheet.create({
     root: {
         ...mixins.defaultPage,
