@@ -29,7 +29,7 @@ class LandingPage extends Component {
                     <Text style={styles.header}>GHOST AR</Text>
                     <Image
                         style={styles.image}
-                        source={require('../assets/images/alien.png')} />
+                        source={require('../assets/images/ghost.png')} />
                     <Button
                         rounded
                         style={styles.button}

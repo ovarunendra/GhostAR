@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Router, Stack, Scene } from 'react-native-router-flux';
+import SplashScreen from 'react-native-splash-screen';
 import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
@@ -36,6 +37,9 @@ const styles = StyleSheet.create({
 class App extends Component {
   componentWillMount() {
     this.props.checkFirstPlay();
+  }
+  componentDidMount() {
+    SplashScreen.hide()
   }
   render() {
     return (
